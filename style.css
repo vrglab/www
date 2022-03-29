@@ -1,0 +1,384 @@
+html 
+{
+    scroll-behavior: smooth;
+    height: 1391px
+}
+body.Norm
+{
+    background: #9fca99;
+}
+
+body.Next
+{
+    background: #97b9bc;
+}
+
+body.Before
+{
+    background: #dfc0c0;
+}
+
+.info
+{
+    background-color:  #32a852;
+    color: #d4d4d4;
+    border: 3px solid green;
+    font-size: 120px;
+    text-align: center;
+    width: 100;
+    padding: 100px 0;
+    position: relative;
+}
+
+
+
+.Nextinfo
+{
+    background-color:  #3bc9bd;
+    color: #d4d4d4;
+    border: 3px solid #34b4aa;
+    font-size: 120px;
+    text-align: center;
+    width: 100;
+    padding: 100px 0;
+    position: relative;
+}
+
+.Lastinfo
+{
+    background-color:  #c93b3b;
+    color: #d4d4d4;
+    border: 3px solid #b43434;
+    font-size: 120px;
+    text-align: center;
+    width: 100;
+    padding: 100px 0;
+    position: relative;
+}
+
+
+.gridRow {
+    border: 55px solid transparent;
+    width: auto;
+}
+
+.header
+{
+    border: 10px solid black;
+    color: black;
+    font-size: 40px;
+    text-align: center;
+    width: 198px;
+}
+
+
+
+
+.cell {
+    border: 10px solid #575757;
+    margin: 21px;
+    font-size: 43px;
+    background: transparent;
+    color: black;
+    text-align: center;
+    padding: 16px 0;
+    width: 96px;
+    position: relative;
+    left: 25px;
+}
+.cellCurent
+{
+    border: 8px solid #575757;
+    margin: 24px;
+    font-size: 43px;
+    background: linear-gradient(46deg, #440750,#235a1e );
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    width: 98px;
+    position: relative;
+    left: 25px;
+}
+
+
+div.Curent {
+    border: 10px solid rgb(87, 87, 87);
+    margin: 20px;
+    font-size: 43px;
+    background: rgb(119, 210, 81);
+    color: black;
+    text-align: center;
+    padding: 16px 0px;
+    width: 96px;
+    position: relative;
+    left: 25px;
+}
+.cellHidden {
+    border: 10px solid transparent;
+    margin: 19px;
+    font-size: 43px;
+    background: transparent;
+    color: transparent;
+    text-align: center;
+    padding: 26px 0;
+    width: 90px;
+}
+
+
+.clock
+{
+    text-align: right;
+    font-size: 69px;
+    position: relative;
+    color: white;
+    top: -229px;
+    right: 9px;
+}
+
+u
+{
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    margin: -60px;
+    border-radius: 100;
+    align-items: center;
+    left: 350px;
+}
+
+li{
+    display: inline-block;
+    align-self: baseline;
+    position: relative;
+    top: 169px;
+    left: 125px;
+    margin-right: 4px;
+    border-radius: 3;
+ }
+
+.goToTop
+{
+    border: 10px solid black;
+    color: black;
+    font-size: 40px;
+    text-align: center;
+    width: 192px;
+    position: relative;
+    top: -149px;
+}    
+
+button
+{
+    background: linear-gradient(53deg, #10d3a2,#c7407f );
+    color: white;
+}
+
+button.right
+{
+    position: absolute;
+    left: auto;
+    height: 832px;
+    width: 82px;
+ 
+}
+
+button.left
+{
+    position: absolute;
+    right: 12px;
+    height: 832px;
+    width: 82px;
+}
+
+button.TopHidden
+{
+    color: transparent;
+    background: transparent;
+    border: transparent;
+    position: absolute;
+    right: 1027px;
+    height: 69px;
+    width: 489px;
+}
+
+button.TopShowLeft
+{
+    position: absolute;
+    left: 102px;
+    height: 831px;
+    width: 99px;
+}
+
+button.TopShowRight
+{
+    position: absolute;
+    right: 102px;
+    height: 831px;
+    width: 99px;
+}
+
+.GridCOntainer
+{
+    position: ABSOLUTE;
+    left: 320px;
+    display: grid;
+    grid-column: 8;
+    grid-template-rows: auto;
+    padding: 26px;
+    width: 1673px;
+    grid-template-areas: 'header header header header header header header';
+}
+
+.cellHidden
+{
+    color: transparent;
+    background: transparent;
+    border: transparent;
+}
+
+@media  screen and (max-width: 1000px) 
+{
+
+    .header
+    {
+        border: 10px solid black;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        width: 135px;
+    }
+
+.goToTop
+{
+    border: 10px solid black;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    width: 132px;
+    position: relative;
+    top: -118px;
+} 
+
+.cell {
+    border: 10px solid black;
+    margin: 6px;
+    font-size: 43px;
+    background: linear-gradient(46deg, #b210d3,#4bc740 );
+    color: white;
+    text-align: center;
+    padding: 21px 0;
+    width: 99px;
+}
+.cellCurent
+{
+    border: 11px solid green;
+    margin: 9px;
+    font-size: 43px;
+    background: linear-gradient(46deg, #440750,#235a1e );
+    color: white;
+    text-align: center;
+    padding: 26px 0;
+    width: 96px;
+}
+
+u
+{
+    display: inline-block;
+    text-decoration: none;
+    margin: -98px;
+    border-radius: 100;
+    align-items: center;
+}
+
+html 
+{
+    scroll-behavior: smooth;
+    height: 3856px;
+}
+}
+
+
+
+@media  screen and (max-width: 600px) 
+{
+    .info
+    {
+        background-color: #32a852;
+        color: #d4d4d4;
+        border: 3px solid green;
+        font-size: 55px;
+        text-align: center;
+        width: 100;
+        padding: 55px 0;
+        position: relative;
+
+    }
+    .clock
+{
+    text-align: right;
+    font-size: 23px;
+    position: relative;
+    color: white;
+    top: -168px;
+    right: 9px;
+}
+
+    .header
+    {    border: 10px solid black;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        width: 70px;
+        position: relative;
+        top: 144px;
+    }
+
+.goToTop
+{
+    border: 10px solid black;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 69px;
+    position: relative;
+    top: 59px;
+} 
+
+.cell {
+    border: 5px solid black;
+    margin: 6px;
+    font-size: 23px;
+    background: linear-gradient(46deg, #b210d3,#4bc740 );
+    color: white;
+    text-align: center;
+    padding: -1px 0;
+    width: 50px;
+}
+.cellCurent
+{
+    border: 6px solid green;
+    margin: 9px;
+    font-size: 23px;
+    background: linear-gradient(46deg, #440750,#235a1e );
+    color: white;
+    text-align: center;
+    padding: 18px 0;
+    width: 41px;
+}
+
+u
+{
+    display: inline-block;
+    text-decoration: none;
+    margin: -160px;
+    border-radius: 100;
+    align-items: center;
+}
+
+html 
+{
+    scroll-behavior: smooth;
+    height: 3856px;
+    width: 841px;
+}
+}
