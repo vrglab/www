@@ -167,6 +167,32 @@ li{
     top: -149px;
 }    
 
+input
+{
+    background: linear-gradient(53deg, #10d3a2,#c7407f );
+    color: white;
+}
+
+input.right
+{
+
+    position: absolute;
+    left: auto;
+    height: 832px;
+    width: 82px;
+ 
+}
+
+input.left
+{
+
+    position: absolute;
+    right: 12px;
+    height: 832px;
+    width: 82px;
+}
+
+
 button
 {
     background: linear-gradient(53deg, #10d3a2,#c7407f );
@@ -175,6 +201,7 @@ button
 
 button.right
 {
+
     position: absolute;
     left: auto;
     height: 832px;
@@ -184,6 +211,7 @@ button.right
 
 button.left
 {
+
     position: absolute;
     right: 12px;
     height: 832px;
@@ -201,7 +229,7 @@ button.TopHidden
     width: 489px;
 }
 
-button.TopShowLeft
+.TopShowLeft
 {
     position: absolute;
     left: 102px;
@@ -209,7 +237,7 @@ button.TopShowLeft
     width: 99px;
 }
 
-button.TopShowRight
+.TopShowRight
 {
     position: absolute;
     right: 102px;
