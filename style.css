@@ -1,3 +1,19 @@
+a{
+    color: white;
+    text-decoration: unset;
+}
+
+.form
+{
+    position: relative;
+    width: 87px;
+    right: auto;
+    align-content: center;
+    border: 10px solid black;
+    height: 97px;
+}
+
+
 html 
 {
     scroll-behavior: smooth;
@@ -167,15 +183,12 @@ li{
     top: -149px;
 }    
 
-input
-{
-    background: linear-gradient(53deg, #10d3a2,#c7407f );
-    color: white;
-}
+
 
 input.right
 {
-
+    background: linear-gradient(53deg, #10d3a2,#c7407f );
+    color: white;
     position: absolute;
     left: auto;
     height: 832px;
@@ -185,12 +198,22 @@ input.right
 
 input.left
 {
+    background: linear-gradient(53deg, #10d3a2,#c7407f );
+    color: white;
 
     position: absolute;
     right: 12px;
     height: 832px;
     width: 82px;
 }
+
+
+input
+{
+    text-decoration: unset;
+    border: transparent;
+}
+
 
 
 button
@@ -235,6 +258,8 @@ button.TopHidden
     left: 102px;
     height: 831px;
     width: 99px;
+    background: linear-gradient(53deg, #10d3a2,#c7407f );
+    color: white;
 }
 
 .TopShowRight
@@ -243,6 +268,8 @@ button.TopHidden
     right: 102px;
     height: 831px;
     width: 99px;
+    background: linear-gradient(53deg, #10d3a2,#c7407f );
+    color: white;
 }
 
 .GridCOntainer
@@ -267,15 +294,23 @@ button.TopHidden
 @media  screen and (max-width: 1000px) 
 {
 
-    .header
-    {
+    .header {
         border: 10px solid black;
         color: white;
-        font-size: 30px;
+        font-size: 11px;
         text-align: center;
-        width: 135px;
+        width: 53px;
     }
-
+    .GridCOntainer {
+        position: ABSOLUTE;
+        left: 186px;
+        display: grid;
+        grid-column: 8;
+        grid-template-rows: auto;
+        padding: -34px;
+        width: 635px;
+        grid-template-areas: 'header header header header header header header';
+    }
 .goToTop
 {
     border: 10px solid black;
@@ -288,27 +323,48 @@ button.TopHidden
 } 
 
 .cell {
-    border: 10px solid black;
-    margin: 6px;
-    font-size: 43px;
+    border: 3px solid black;
+    margin: 17px;
+    font-size: 9px;
     background: linear-gradient(46deg, #b210d3,#4bc740 );
     color: white;
     text-align: center;
-    padding: 21px 0;
-    width: 99px;
+    padding: 5px 0;
+    width: 18px;
+    position: relative;
+    left: 0px;
 }
-.cellCurent
-{
-    border: 11px solid green;
+.cellCurent {
+    border: 5px solid #575757;
     margin: 9px;
-    font-size: 43px;
+    font-size: 9px;
     background: linear-gradient(46deg, #440750,#235a1e );
     color: white;
     text-align: center;
-    padding: 26px 0;
-    width: 96px;
+    padding: 5px 0;
+    width: 20px;
+    position: relative;
+    left: 5px;
 }
-
+input.left {
+    height: 71px;
+    right: -529px;
+    top: -78px;
+    position: relative;
+}
+.TopShowRight {
+    position: absolute;
+    right: 430px;
+    height: 60px;
+    width: 82px;
+    top: 358px;
+}
+input.right {
+    height: 71px;
+    right: -355px;
+    top: -78px;
+    position: relative;
+}
 u
 {
     display: inline-block;
@@ -321,7 +377,28 @@ u
 html 
 {
     scroll-behavior: smooth;
-    height: 3856px;
+    height: 1264px;
+}
+
+.cellHidden {
+    border: 10px solid transparent;
+    margin: -9px;
+    font-size: 43px;
+    color: transparent;
+    background: transparent;
+    border: transparent;
+    text-align: center;
+    padding: 5px 0;
+    width: 35px;
+}
+
+.clock {
+    text-align: right;
+    font-size: 69px;
+    position: relative;
+    color: white;
+    top: -311px;
+    right: 333px;
 }
 }
 
@@ -373,25 +450,28 @@ html
 } 
 
 .cell {
-    border: 5px solid black;
-    margin: 6px;
+    border: 5px solid #575757;
+    margin: 20px;
     font-size: 23px;
-    background: linear-gradient(46deg, #b210d3,#4bc740 );
+    background: transparent;
     color: white;
     text-align: center;
-    padding: -1px 0;
-    width: 50px;
+    padding: 1px;
+    width: 29px;
+    left: -8px;
+    position: relative;
 }
-.cellCurent
-{
+.cellCurent {
     border: 6px solid green;
     margin: 9px;
     font-size: 23px;
     background: linear-gradient(46deg, #440750,#235a1e );
     color: white;
     text-align: center;
-    padding: 18px 0;
-    width: 41px;
+    padding: 1px;
+    width: 29px;
+    left: -8px;
+    position: relative;
 }
 
 u
@@ -408,5 +488,51 @@ html
     scroll-behavior: smooth;
     height: 3856px;
     width: 841px;
+}
+
+.GridCOntainer
+{
+    position: ABSOLUTE;
+    left: 72px;
+    display: grid;
+    grid-column: 8;
+    grid-template-rows: auto;
+    padding: 26px;
+    width: 666px;
+    grid-template-areas: 'header header header header header header header';
+}
+
+input.left {
+    right: 2px;
+    position: absolute;
+    height: 89px;
+    width: 82px;
+}
+input.right {
+    right: 217px;
+    position: absolute;
+    height: 89px;
+    width: 82px;
+}
+
+.TopShowRight {
+    position: absolute;
+    right: 102px;
+    height: 90px;
+    width: 99px;
+}
+
+.cellHidden {
+    border: 10px solid transparent;
+    color: transparent;
+    background: transparent;
+    border: transparent;
+    margin: -24px;
+    font-size: 43px;
+    background: transparent;
+    color: transparent;
+    text-align: center;
+    padding: 26px 0;
+    width: 90px;
 }
 }

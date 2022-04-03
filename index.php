@@ -12,57 +12,57 @@
 
 
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "callander";
-$something = php_uname();
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "callander";
+    $something = php_uname();
 
 
-if($_COOKIE["useData"] == null)
-{
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-  
-  $sql = "INSERT INTO users (userDeviceName)
-  VALUES ('$something')";
-  
-  if ($conn->query($sql) === TRUE) {
-      
-
-
-
-
-
-    $sql = "SELECT id, userDeviceName FROM users";
-        $result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-
-  while($row = $result->fetch_assoc()) {
-
-    if($row["userDeviceName"] == $something)
+    if($_COOKIE["useData"] == null)
     {
-        setcookie("useData", $row["id"], time() + 2  * 24 * 60 * 60);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-  }
-}
+    
+    $sql = "INSERT INTO users (userDeviceName)
+    VALUES ('$something')";
+    
+    if ($conn->query($sql) === TRUE) {
+        
+
+
+
+
+
+        $sql = "SELECT id, userDeviceName FROM users";
+            $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+
+    while($row = $result->fetch_assoc()) {
+
+        if($row["userDeviceName"] == $something)
+        {
+            setcookie("useData", $row["id"], time() + 2  * 24 * 60 * 60);
+        }
+    }
+    }
 
 
 
 
 
 
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-  
-  $conn->close();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    
+    $conn->close();
 }
 
 
@@ -79,19 +79,152 @@ if ($result->num_rows > 0) {
 
 
 
-<body id="body" class="Norm">
 
 
+<?php 
+
+
+                    $strDate =  explode(" ", date("year"), 8);
+
+
+
+                    if($_COOKIE["ViewMonthData"] > date("m"))
+                    {
+                        if($_COOKIE["ViewYearData"] > $strDate[3])
+                        {
+                            echo(' <body id="body" class="Next">');
+                        }else if($_COOKIE["ViewYearData"] == $strDate[3]){
+                            echo(' <body id="body" class="Next">');
+                        }else  if($_COOKIE["ViewYearData"] < $strDate[3])
+                        {
+                            echo(' <body id="body" class="Before">');
+                        }
+
+
+                    
+                    }else if($_COOKIE["ViewMonthData"] == date("m"))
+                    {
+
+                        if($_COOKIE["ViewYearData"] == $strDate[3])
+                        {
+                            echo(' <body id="body" class="Norm">');
+                        }else  if($_COOKIE["ViewYearData"] > $strDate[3])
+                        {
+                            echo(' <body id="body" class="Next">');
+                        }else  if($_COOKIE["ViewYearData"] < $strDate[3])
+                        {
+                            echo(' <body id="body" class="Before">');
+                        }
+
+                    
+                    }
+
+
+                    if($_COOKIE["ViewMonthData"] < date("m"))
+                    {
+
+                        if($_COOKIE["ViewYearData"] < $strDate[3])
+                        {
+                            echo(' <body id="body" class="Before">');
+                        }else if($_COOKIE["ViewYearData"] == $strDate[3]){
+                            echo(' <body id="body" class="Before">');
+                        }else if($_COOKIE["ViewYearData"] > $strDate[3])
+                        {
+                            echo(' <body id="body" class="Next">');
+                        }
+
+
+                    
+                    }else if($_COOKIE["ViewMonthData"] == date("m"))
+                    {
+                        if($_COOKIE["ViewYearData"] == $strDate[3])
+                        {
+                            echo(' <body id="body" class="Norm">');
+                        }
+                    }
+
+
+?>
 
 
 
 
 
 <section >   
-        <div class="info" id = "Month">    <?php
 
 
-  
+
+<?php 
+
+
+                    $strDate =  explode(" ", date("year"), 8);
+
+
+
+                    if($_COOKIE["ViewMonthData"] > date("m"))
+                    {
+                        if($_COOKIE["ViewYearData"] > $strDate[3])
+                        {
+                            echo(' <div class="Nextinfo" id = "Month">');
+                        }else if($_COOKIE["ViewYearData"] == $strDate[3]){
+                            echo(' <div class="Nextinfo" id = "Month">');
+                        }else if($_COOKIE["ViewYearData"] < $strDate[3])
+                        {
+                            echo(' <div class="Lastinfo" id = "Month">');
+                        }
+
+
+                    
+                    }else if($_COOKIE["ViewMonthData"] == date("m"))
+                    {
+
+                        if($_COOKIE["ViewYearData"] == $strDate[3])
+                        {
+                            echo('<div class="info" id = "Month">');
+                        }else  if($_COOKIE["ViewYearData"] > $strDate[3])
+                        {
+                            echo(' <div class="Nextinfo" id = "Month">');
+                        }
+
+                    
+                    }
+
+
+                    if($_COOKIE["ViewMonthData"] < date("m"))
+                    {
+
+                        if($_COOKIE["ViewYearData"] < $strDate[3])
+                        {
+                            echo(' <div class="Lastinfo" id = "Month">');
+                        }else if($_COOKIE["ViewYearData"] == $strDate[3]){
+                            echo(' <div class="Lastinfo" id = "Month">');
+                        }else if($_COOKIE["ViewYearData"] > $strDate[3])
+                        {
+                            echo(' <div class="Nextinfo" id = "Month">');
+                        }
+
+
+                    
+                    }else if($_COOKIE["ViewMonthData"] == date("m"))
+                    {
+                        if($_COOKIE["ViewYearData"] == $strDate[3])
+                        {
+                            
+                        }else  if($_COOKIE["ViewYearData"] < $strDate[3])
+                        {
+                            echo(' <div class="Lastinfo" id = "Month">');
+                        }
+                    }
+
+
+?>
+
+
+
+     <?php
+
+
+
 
 
    
@@ -99,13 +232,14 @@ if ($result->num_rows > 0) {
         if($_COOKIE["ViewMonthData"] == null)
         {
             setcookie("ViewMonthData", date("m"), time() + 2  * 24 * 60 * 60);
-
+            header('Refresh: 1; url=index.php');
           
         }
         else
         {
          
         }
+
           
         
 
@@ -116,14 +250,32 @@ if ($result->num_rows > 0) {
                 if($_COOKIE["ViewYearData"] == null)
                 {
                     setcookie("ViewYearData", $strDate[3], time() + 2  * 24 * 60 * 60);
+                    header('Refresh: 1; url=index.php');
                 }
 
                 if($_COOKIE["CurentDate"] == null)
                 {
-                    setcookie("CurentDate", date("m") . "-" . date("d") . "-" .  $strDate[3], time() + 2  * 24 * 60 * 60);
+                    setcookie("CurentDate", date("m"), time() + 2  * 24 * 60 * 60);
+                    header('Refresh: 1; url=index.php');
         
                   
                 }
+
+                if($_COOKIE["CurentDateY"] == null)
+                {
+                    setcookie("CurentDateY", $strDate[3], time() + 2  * 24 * 60 * 60);
+                    header('Refresh: 1; url=index.php');
+                }
+
+                if($_COOKIE["CurentDate"] != date("m"))
+                {
+                    setcookie("CurentDate", date("m"), time() + 2  * 24 * 60 * 60);
+                    setcookie("ViewMonthData", date("m"), time() + 2  * 24 * 60 * 60);
+                    header('Refresh: 1; url=index.php');
+                }
+
+
+
            
                 $monthNummber = $_COOKIE["ViewMonthData"];
                 $yearNummber =  $_COOKIE["ViewYearData"];
@@ -182,7 +334,12 @@ if ($result->num_rows > 0) {
                         $cure = 0;
                         setcookie("ViewYearData", $yearNummber + 01, time() + 2  * 24 * 60 * 60);
                     }
-                   setcookie("ViewMonthData", $cure + 01, time() + 2  * 24 * 60 * 60);
+                    if($cure < 10)
+                        {
+                            setcookie("ViewMonthData", "0" . ($cure + 01), time() + 2  * 24 * 60 * 60);
+                        }else{
+                            setcookie("ViewMonthData", $cure + 01, time() + 2  * 24 * 60 * 60);
+                        } 
                 }
 
                 function PrevMonth()
@@ -194,46 +351,19 @@ if ($result->num_rows > 0) {
                         $cure = 13;
                         setcookie("ViewYearData", $yearNummber - 01, time() + 2  * 24 * 60 * 60);
                     }
-                   setcookie("ViewMonthData", $cure - 01, time() + 2  * 24 * 60 * 60);
-                }
 
-
-
-                function AddCalData()
-                {
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "callander";
-                    $id = $_COOKIE["useData"];
-                    $da =   '
-                    {
-                        "date": "30-03-2022",
-                        "time": "18:40",
-                        "data": "Hello this is my apointment"
-                      }
-                    ';
-
-
-
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                    }
-
-                    $sql = "INSERT INTO callanderdata (user_ida, dataa)
-                    VALUES ('$id', ' $da')";
-
-                    if ($conn->query($sql) === TRUE) {
+                        if($cure < 10)
+                        {
+                            setcookie("ViewMonthData", "0" . ($cure - 01), time() + 2  * 24 * 60 * 60);
+                        }else{
+                            setcookie("ViewMonthData", $cure - 01, time() + 2  * 24 * 60 * 60);
+                        } 
+                        
+                    
                   
-                    } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
-                    }
-
-                    $conn->close();
-
                 }
+
+
 
 
                 if(array_key_exists('NextMonth', $_POST)) {
@@ -243,15 +373,18 @@ if ($result->num_rows > 0) {
                 else if(array_key_exists('LastMonth', $_POST)) {
                     PrevMonth();
                     header('Refresh: 1; url=index.php');
-                }else if(array_key_exists('AddToAppointments', $_POST)) {
-                    AddCalData();
-                 
+                }else if(array_key_exists('BackTodate', $_POST)) {
+                
+                    setcookie("ViewMonthData", $_COOKIE["CurentDate"] , time() + 2  * 24 * 60 * 60);
+                    setcookie("ViewYearData", $_COOKIE["CurentDateY"] , time() + 2  * 24 * 60 * 60);
+                    header('Refresh: 1; url=index.php');
                 }
                 
 
 
 
-          ?>    </div>    
+          ?>    
+           </div>    
             <div class="clock" id="Clock">
             <?php
           
@@ -295,10 +428,15 @@ if ($result->num_rows > 0) {
     ?> 
          
             </div>
-</section>
+</section >
 
 <section> 
-    <div id="container" class="GridCOntainer">
+
+<form method="post">
+
+
+
+    <div id="container" class="GridCOntainer" >
 
    
        
@@ -342,35 +480,42 @@ if ($result->num_rows > 0) {
 
                                 if($da == date("d"))
                                 {
-                                    
-                                $element = $dom->createElement('div',
-                                $da);
-                               
-                  
-                             $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cellCurent'));
-                
-                
-                
-                       
-                                $element->setAttribute('class', 'cellCurent');
-                                $dom->appendChild($element);
-                
-                                echo $dom->saveHTML();
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
+                                    $da);
+                      
+                                 $attr = $element->setAttributeNode(
+                                           new DOMAttr('class', 'cellCurent'));
+                    
+                    
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
+                    
+                                            $aelement->setAttribute('href', 'Time.php');
+                           
+                                    $element->setAttribute('class', 'cellCurent');
+                                    $element->appendChild($aelement);
+                                    $dom->appendChild($element);
+                    
+                                    echo $dom->saveHTML();
 
                                 }else{
 
-                                    $element = $dom->createElement('div',
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
                                     $da);
-                                   
                       
                                  $attr = $element->setAttributeNode(
-                                           new DOMAttr('class', 'cell'));
+                                           new DOMAttr('class', 'cellCurent'));
                     
                     
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
                     
+                                            $aelement->setAttribute('href', 'Time.php');
                            
                                     $element->setAttribute('class', 'cell');
+                                    $element->appendChild($aelement);
                                     $dom->appendChild($element);
                     
                                     echo $dom->saveHTML();
@@ -484,17 +629,21 @@ if ($result->num_rows > 0) {
                         {
                             if($dayOfWeek == "Monday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -502,17 +651,21 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Monday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -573,34 +726,42 @@ if ($result->num_rows > 0) {
                                 if($da == date("d"))
                                 {
                                     
-                                $element = $dom->createElement('div',
-                                $da);
-                               
-                  
-                             $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cellCurent'));
-                
-                
-                
-                       
-                                $element->setAttribute('class', 'cellCurent');
-                                $dom->appendChild($element);
-                
-                                echo $dom->saveHTML();
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
+                                    $da);
+                      
+                                 $attr = $element->setAttributeNode(
+                                           new DOMAttr('class', 'cellCurent'));
+                    
+                    
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
+                    
+                                            $aelement->setAttribute('href', 'Time.php');
+                           
+                                    $element->setAttribute('class', 'cellCurent');
+                                    $element->appendChild($aelement);
+                                    $dom->appendChild($element);
+                    
+                                    echo $dom->saveHTML();
 
                                 }else{
 
-                                    $element = $dom->createElement('div',
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
                                     $da);
-                                   
                       
                                  $attr = $element->setAttributeNode(
-                                           new DOMAttr('class', 'cell'));
+                                           new DOMAttr('class', 'cellCurent'));
                     
                     
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
                     
+                                            $aelement->setAttribute('href', 'Time.php');
                            
                                     $element->setAttribute('class', 'cell');
+                                    $element->appendChild($aelement);
                                     $dom->appendChild($element);
                     
                                     echo $dom->saveHTML();
@@ -700,17 +861,21 @@ if ($result->num_rows > 0) {
                         {
                             if($dayOfWeek == "Tuesday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -718,17 +883,21 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Tuesday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -797,34 +966,42 @@ if ($result->num_rows > 0) {
                                 if($da == date("d"))
                                 {
                                     
-                                $element = $dom->createElement('div',
-                                $da);
-                               
-                  
-                             $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cellCurent'));
-                
-                
-                
-                       
-                                $element->setAttribute('class', 'cellCurent');
-                                $dom->appendChild($element);
-                
-                                echo $dom->saveHTML();
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
+                                    $da);
+                      
+                                 $attr = $element->setAttributeNode(
+                                           new DOMAttr('class', 'cellCurent'));
+                    
+                    
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
+                    
+                                            $aelement->setAttribute('href', 'Time.php');
+                           
+                                    $element->setAttribute('class', 'cellCurent');
+                                    $element->appendChild($aelement);
+                                    $dom->appendChild($element);
+                    
+                                    echo $dom->saveHTML();
 
                                 }else{
 
-                                    $element = $dom->createElement('div',
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
                                     $da);
-                                   
                       
                                  $attr = $element->setAttributeNode(
-                                           new DOMAttr('class', 'cell'));
+                                           new DOMAttr('class', 'cellCurent'));
                     
                     
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
                     
+                                            $aelement->setAttribute('href', 'Time.php');
                            
                                     $element->setAttribute('class', 'cell');
+                                    $element->appendChild($aelement);
                                     $dom->appendChild($element);
                     
                                     echo $dom->saveHTML();
@@ -905,18 +1082,21 @@ if ($result->num_rows > 0) {
                         if($da == date("d"))
                         {
                             if($dayOfWeek == "Wednesday")
-                            {
-                                $element = $dom->createElement('div',
+                            {       $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -924,17 +1104,21 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Wednesday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1007,34 +1191,42 @@ if ($result->num_rows > 0) {
                                     if($da == date("d"))
                                 {
                                     
-                                $element = $dom->createElement('div',
-                                $da);
-                               
-                  
-                             $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cellCurent'));
-                
-                
-                
-                       
-                                $element->setAttribute('class', 'cell');
-                                $dom->appendChild($element);
-                
-                                echo $dom->saveHTML();
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
+                                    $da);
+                      
+                                 $attr = $element->setAttributeNode(
+                                           new DOMAttr('class', 'cellCurent'));
+                    
+                    
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
+                    
+                                            $aelement->setAttribute('href', 'Time.php');
+                           
+                                    $element->setAttribute('class', 'cellCurent');
+                                    $element->appendChild($aelement);
+                                    $dom->appendChild($element);
+                    
+                                    echo $dom->saveHTML();
 
                                 }else{
 
-                                    $element = $dom->createElement('div',
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
                                     $da);
-                                   
                       
                                  $attr = $element->setAttributeNode(
-                                           new DOMAttr('class', 'cell'));
+                                           new DOMAttr('class', 'cellCurent'));
                     
                     
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
                     
+                                            $aelement->setAttribute('href', 'Time.php');
                            
                                     $element->setAttribute('class', 'cell');
+                                    $element->appendChild($aelement);
                                     $dom->appendChild($element);
                     
                                     echo $dom->saveHTML();
@@ -1099,17 +1291,21 @@ if ($result->num_rows > 0) {
                         {
                             if($dayOfWeek == "Thursday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1117,17 +1313,21 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Thursday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1203,38 +1403,47 @@ if ($result->num_rows > 0) {
                                 case 'Friday':
                                     if($da == date("d"))
                                     {
-                                        
-                                    $element = $dom->createElement('div',
+      
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
                                     $da);
-                                   
                       
                                  $attr = $element->setAttributeNode(
                                            new DOMAttr('class', 'cellCurent'));
                     
                     
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
                     
+                                            $aelement->setAttribute('href', 'Time.php');
                            
-                                    $element->setAttribute('class', 'cell');
+                                    $element->setAttribute('class', 'cellCurent');
+                                    $element->appendChild($aelement);
                                     $dom->appendChild($element);
                     
                                     echo $dom->saveHTML();
     
                                     }else{
-    
-                                        $element = $dom->createElement('div',
-                                        $da);
-                                       
-                          
-                                     $attr = $element->setAttributeNode(
-                                               new DOMAttr('class', 'cell'));
-                        
-                        
-                        
-                               
-                                        $element->setAttribute('class', 'cell');
-                                        $dom->appendChild($element);
-                        
-                                        echo $dom->saveHTML();
+
+              
+                                    $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
+                                    $da);
+                      
+                                 $attr = $element->setAttributeNode(
+                                           new DOMAttr('class', 'cell'));
+                    
+                    
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
+                    
+                                            $aelement->setAttribute('href', 'Time.php');
+                           
+                                    $element->setAttribute('class', 'cell');
+                                    $element->appendChild($aelement);
+                                    $dom->appendChild($element);
+                    
+                                    echo $dom->saveHTML();
                                     }
                                             break;
                                     case 'Saturday':
@@ -1280,17 +1489,21 @@ if ($result->num_rows > 0) {
                         {
                             if($dayOfWeek == "Friday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1298,17 +1511,21 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Friday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
                                        new DOMAttr('class', 'cell'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1389,34 +1606,42 @@ if ($result->num_rows > 0) {
                                         if($da == date("d"))
                                         {
                                             
-                                        $element = $dom->createElement('div',
-                                        $da);
-                                       
-                          
-                                     $attr = $element->setAttributeNode(
-                                               new DOMAttr('class', 'cellCurent'));
-                        
-                        
-                        
-                               
-                                        $element->setAttribute('class', 'cell');
-                                        $dom->appendChild($element);
-                        
-                                        echo $dom->saveHTML();
+                                            $element = $dom->createElement('div');
+                                    $aelement = $dom->createElement('a',
+                                    $da);
+                      
+                                 $attr = $element->setAttributeNode(
+                                           new DOMAttr('class', 'cellCurent'));
+                    
+                    
+                                           $attra = $aelement->setAttributeNode(
+                                            new DOMAttr('href', 'cell'));
+                    
+                                            $aelement->setAttribute('href', 'Time.php');
+                           
+                                    $element->setAttribute('class', 'cellCurent');
+                                    $element->appendChild($aelement);
+                                    $dom->appendChild($element);
+                    
+                                    echo $dom->saveHTML();
         
                                         }else{
         
-                                            $element = $dom->createElement('div',
+                                            $element = $dom->createElement('div');
+                                            $aelement = $dom->createElement('a',
                                             $da);
-                                           
                               
                                          $attr = $element->setAttributeNode(
-                                                   new DOMAttr('class', 'cell'));
+                                                   new DOMAttr('class', 'cellCurent'));
                             
                             
+                                                   $attra = $aelement->setAttributeNode(
+                                                    new DOMAttr('href', 'cell'));
                             
+                                                    $aelement->setAttribute('href', 'Time.php');
                                    
                                             $element->setAttribute('class', 'cell');
+                                            $element->appendChild($aelement);
                                             $dom->appendChild($element);
                             
                                             echo $dom->saveHTML();
@@ -1449,17 +1674,20 @@ if ($result->num_rows > 0) {
                         {
                             if($dayOfWeek == "Saturday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
-                
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1467,17 +1695,21 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Saturday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1562,34 +1794,42 @@ if ($result->num_rows > 0) {
                                         if($da == date("d"))
                                         {
                                             
-                                        $element = $dom->createElement('div',
-                                        $da);
-                                       
-                          
-                                     $attr = $element->setAttributeNode(
-                                               new DOMAttr('class', 'cellCurent'));
-                        
-                        
-                        
-                               
-                                        $element->setAttribute('class', 'cell');
-                                        $dom->appendChild($element);
-                        
-                                        echo $dom->saveHTML();
+                                            $element = $dom->createElement('div');
+                                            $aelement = $dom->createElement('a',
+                                            $da);
+                              
+                                         $attr = $element->setAttributeNode(
+                                                   new DOMAttr('class', 'cellCurent'));
+                            
+                            
+                                                   $attra = $aelement->setAttributeNode(
+                                                    new DOMAttr('href', 'cell'));
+                            
+                                                    $aelement->setAttribute('href', 'Time.php');
+                                   
+                                            $element->setAttribute('class', 'cellCurent');
+                                            $element->appendChild($aelement);
+                                            $dom->appendChild($element);
+                            
+                                            echo $dom->saveHTML();
         
                                         }else{
         
-                                            $element = $dom->createElement('div',
+                                            $element = $dom->createElement('div');
+                                            $aelement = $dom->createElement('a',
                                             $da);
-                                           
                               
                                          $attr = $element->setAttributeNode(
-                                                   new DOMAttr('class', 'cell'));
+                                                   new DOMAttr('class', 'cellCurent'));
                             
                             
+                                                   $attra = $aelement->setAttributeNode(
+                                                    new DOMAttr('href', 'cell'));
                             
+                                                    $aelement->setAttribute('href', 'Time.php');
                                    
                                             $element->setAttribute('class', 'cell');
+                                            $element->appendChild($aelement);
                                             $dom->appendChild($element);
                             
                                             echo $dom->saveHTML();
@@ -1606,17 +1846,21 @@ if ($result->num_rows > 0) {
                         {
                             if($dayOfWeek == "Sunday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
                 
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cellCurent');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1624,17 +1868,20 @@ if ($result->num_rows > 0) {
                         }else{
                             if($dayOfWeek == "Sunday")
                             {
-                                $element = $dom->createElement('div',
+                                $element = $dom->createElement('div');
+                                $aelement = $dom->createElement('a',
                                 $da);
-                               
                   
                              $attr = $element->setAttributeNode(
-                                       new DOMAttr('class', 'cell'));
+                                       new DOMAttr('class', 'cellCurent'));
                 
                 
-                
+                                       $attra = $aelement->setAttributeNode(
+                                        new DOMAttr('href', 'cell'));
+                                        $aelement->setAttribute('href', "Time copy " . $da . ".php");
                        
                                 $element->setAttribute('class', 'cell');
+                                $element->appendChild($aelement);
                                 $dom->appendChild($element);
                 
                                 echo $dom->saveHTML();
@@ -1667,11 +1914,14 @@ if ($result->num_rows > 0) {
 
     </div>
 
+</form>
+
+
 
 <form method="post">
    
     <input type="submit" name="LastMonth" class="right" value="Zurück" > 
-    <input type="submit" name="AddToAppointments" class="TopShowRight" value="asdass" > 
+    <input type="submit" name="BackTodate" class="TopShowRight" value="Zu Huete" > 
     <input type="submit" name="NextMonth" class="left" value="Nächste" > 
 </form>
 
@@ -1684,7 +1934,6 @@ if ($result->num_rows > 0) {
 
 </section>
 
-<scrip src = "CollorChanger.php"></script>
     
 </body>
 
