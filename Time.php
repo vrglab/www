@@ -111,7 +111,7 @@
         $password = "";
         $dbname = "callander";
         $id = $_COOKIE["useData"];
-                    
+        $existings = [];
         $dom = new DOMDocument('1.0', 'iso-8859-1');
                     
                                 
@@ -128,34 +128,42 @@
             if ($result->num_rows > 0) {
 
                 while($row = $result->fetch_assoc()) {
-                    if($row['user_ida'] == $_COOKIE['useData'])
+
+
+                    if(in_array($row['Dataa'], $existings) == false)
                     {
 
-
-
-
-
-
-
-                        $jobj = json_decode($row['Dataa'], true);
-                    
-                    
-
-
-                             
-                                $element = $dom->createElement('option', $jobj['Texta']);
-
-                                                               
-                                $element->setAttribute('value',$jobj['Texta'] );
-
-                                $dom->appendChild($element);
-                                            
-                                echo $dom->saveHTML();
-
-
-
+                        if($row['user_ida'] == $_COOKIE['useData'])
+                        {
+    
+    
+    
+    
+    
+    
+    
+                            $jobj = json_decode($row['Dataa'], true);
                         
+                        
+    
+    
+                                 
+                                    $element = $dom->createElement('option', $jobj['Texta']);
+    
+                                                                   
+                                    $element->setAttribute('value',$jobj['Texta'] );
+    
+                                    $dom->appendChild($element);
+                                                
+                                    echo $dom->saveHTML();
+    
+    
+                                    array_push($existings, $row['Dataa']);
+                            
+                        }
                     }
+
+
                 }
             } else {
         
@@ -217,7 +225,7 @@
 
 </div>
 
-<a href="index.php">Hello</a>
+<a href="index.php">Zurück</a>
 
 
 
@@ -235,7 +243,10 @@
         $dbname = "callander";
         $id = $_COOKIE["useData"];
         $shouldReset = false;
-        
+        $jsondat = "";
+        $existings = [];
+        $existingElements = [];
+        $clr = false;
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -248,7 +259,7 @@
             foreach ($_POST as &$key) {
 
 
-
+           
                 if(strpos($key, "Delete:"))
                 {
                 $std = explode(" ", $key , 200);
@@ -270,6 +281,41 @@
                     }
                     
                     $conn->close();
+
+
+                }
+
+
+
+              
+                if(strpos($key, "Update:"))
+                {
+                    echo("Should update ellement: " . $notstd);
+                    
+
+
+                    $std = explode(" ", $key , 200);
+                    $notstd = $std[2];
+
+                
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                        }
+                        $a= array("userid"=> $_COOKIE['useData'],"Texta" => $_POST['txts'], "Color" => $_POST['clr'], "TimeclockFrom" => $_POST['timesd'], "TimeclockTo" => $_POST['timeds'], "date" =>  $date, "catagory" => $_POST['catagory']);
+                        $jsondat = json_encode($a);
+
+                        // sql to delete a record
+                        $sql = "UPDATE callanderdata SET dataa= $jsondat WHERE id=$notstd";
+                      
+                        if ($conn->query($sql) === TRUE) {
+
+                        } else {
+                        
+                        }
+                        
+                        $conn->close();
 
 
                 }
@@ -338,13 +384,8 @@
           
 
 
-                $children = $dom->childNodes;
-                for($i = $children->length; $i--;) {
-                    $child = $children->item($i);
+              
                 
-                        $dom->removeChild($child);
-                    
-                } 
 
 
                                         
@@ -367,7 +408,7 @@
 
         }
 
-
+           
 
                                     $conn = new mysqli($servername, $username, $password, $dbname);
                                     if ($conn->connect_error) {
@@ -377,107 +418,50 @@
                                         $sql = "SELECT id, user_ida, dataa FROM callanderdata";
                                         $result = $conn->query($sql);
 
+                                     
+                                            if ($result->num_rows > 0) {
 
-                                        if ($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
 
-                                            while($row = $result->fetch_assoc()) {
-                                                if($row['user_ida'] == $_COOKIE['useData'])
-                                                {
-
-
-
-
-
-
-
-                                                    $jobj = json_decode($row['dataa'], true);
-                                                
-                                                    if($jobj['date'] == $date)
-                                                    {
-
-
-                                                        if($jobj['catagory'] == "norm")
-                                                        {
-                                                            $element = $dom->createElement('div', $jobj['Texta']);
-
-                                                            $elementS = $dom->createElement('form', "Löschen");
-                                    
-                                                            $elementSA = $dom->createElement('input');
-                                                        
-                                            
-                                                        $attr = $element->setAttributeNode(
-                                                                new DOMAttr('style', 'cellCurent'));
-                                    
-                                            
-                                            
-                                                            
-                                    
-                                                                    $elementSA->setAttribute('style',  '    Color: transparent;
-                                                                    background: transparent;
-                                                                    text-align: center;
-                                                                    position: relative;
-                                                                    width: 102px;
-                                                                    height: 29px;
-                                                                    left: -74px;');
-                                    
-                                    
-                                                                    $elementS->setAttribute('style',  '      position: relative;
-                                                                    left: -1067px;
-                                                                    top: -25px;');
-                                    
-                                                                    $elementSA->setAttribute('type',  'submit');
-                                    
-                                                                    $elementSA->setAttribute('value',  ' Delete: ' . $row['id']);
-                                                                    $elementSA->setAttribute('name',  ' Delete: ' . $row['id']);
-                                    
-                                    
-                                    
-                                                                    $elementS->setAttribute('method',  'post');
-                                                            
-                                                                
-                                                
-                                                            $element->setAttribute('style', 'border: 1px solid ' . $jobj['Color'] .";" 
-                                                        
-                                                                .
                                                     
-                                                                "background: " . $jobj['Color'] .";".
-                                                            
-                                                            
-                                                                "color: white;
-                                                                text-align: center;
-                                                                font-size: 23px;
-                                                                height: 26px;
-                                                                " );
-                                    
-                                    
-                                                            
-                                                                $elementS->appendChild($elementSA);
-                                    
-                                    
-                                                                $element->appendChild($elementS);
-                                                        
-                                                            $dom->appendChild($element);
-                                            
-                                                            echo $dom->saveHTML();
-                                                        }else
+                                          
+
+                                                  
+
+                                                  
+                                                        if($row['user_ida'] == $_COOKIE['useData'])
                                                         {
+        
+        
+        
+        
+        
+        
+        
+                                                            $jobj = json_decode($row['dataa'], true);
 
-                                                            $sqls = "SELECT user_ida, Dataa FROM catagory";
-                                                            $results = $conn->query($sqls);
 
 
-                                                            if ($results->num_rows > 0) 
+
+                                                            if(in_array($row['dataa'],  $existings) == false)
                                                             {
-                                                                while($rows = $results->fetch_assoc())
+                                                                if($jobj['date'] == $date)
                                                                 {
-                                                                    if($rows['user_ida'] == $_COOKIE['useData'])
+            
+            
+                                                                    if($jobj['catagory'] == "norm")
                                                                     {
-                                                                        $jobjs = json_decode($rows['Dataa'], true);
                                                                         $element = $dom->createElement('div', $jobj['Texta']);
-
+            
+                                                                        $elementSS = $dom->createElement('form', "Aktualisieren");
+                                                
+                                                                        $elementSAA = $dom->createElement('input');
+            
                                                                         $elementS = $dom->createElement('form', "Löschen");
                                                 
                                                                         $elementSA = $dom->createElement('input');
+
+                                                                        $elementta = $dom->createElement('div', "von ". $jobj['TimeclockFrom'] . ' bis ' .  $jobj['TimeclockTo'] );
                                                                     
                                                         
                                                                     $attr = $element->setAttributeNode(
@@ -494,6 +478,14 @@
                                                                                 width: 102px;
                                                                                 height: 29px;
                                                                                 left: -74px;');
+
+                                                                                $elementta->setAttribute('style',  '     
+                                                                                position: relative;
+                                                                                top: -60px;;');
+
+
+
+                                                                              
                                                 
                                                 
                                                                                 $elementS->setAttribute('style',  '      position: relative;
@@ -508,52 +500,264 @@
                                                 
                                                 
                                                                                 $elementS->setAttribute('method',  'post');
+            
+            
+            
+            
+            
+            
+                                                                                $elementSAA->setAttribute('style',  '    Color: transparent;
+                                                                                background: transparent;
+                                                                                color: transparent;
+                                                                                text-align: center;
+                                                                                position: relative;
+                                                                                width: 119px;
+                                                                                height: 29px;
+                                                                                left: -117px;
+                                                                                ');
+                                                        
+                                                
+                                                                                $elementSS->setAttribute('style',  '   position: relative;
+                                                                                left: -1067px;
+                                                                                top: -25px;
+                                                                                ');
+
+
+
+                                                                                $elementSS->setAttribute('method', 'post');
+
+                                                                                $elementSAA->setAttribute('type',  'submit');
+                                                
+                                                                                $elementSAA->setAttribute('value',  ' Update: ' . $row['id']);
+                                                                                $elementSAA->setAttribute('name',  ' Update: ' . $row['id']);
+                                                
+                                                
+                                                
+                                                                                $elementS->setAttribute('method',  'post');
                                                                         
                                                                             
                                                             
-                                                                        $element->setAttribute('style', 'border: 1px solid ' . $jobjs['Color'] .";" 
+                                                                        $element->setAttribute('style', 'border: 1px solid ' . $jobj['Color'] .";" 
                                                                     
                                                                             .
                                                                 
-                                                                            "background: " . $jobjs['Color'] .";".
+                                                                            "background: " . $jobj['Color'] .";".
                                                                         
                                                                         
                                                                             "color: white;
                                                                             text-align: center;
                                                                             font-size: 23px;
-                                                                            height: 26px;
+                                                                            height: 54px;
                                                                             " );
                                                 
                                                 
                                                                         
                                                                             $elementS->appendChild($elementSA);
                                                 
+                                                                            $elementSS->appendChild($elementSAA);
+                                                
                                                 
                                                                             $element->appendChild($elementS);
-                                                                    
-                                                                        $dom->appendChild($element);
+
+
+
+                                                                            
+                                                
+                                                                            $element->appendChild($elementSS);
+                                                                            $element->appendChild($elementta);
+
+
+                                                                  
+                                                                            $dom->appendChild($element);
                                                         
-                                                                        echo $dom->saveHTML();
+                                                                            echo $dom->saveHTML();
 
-
+                                                                      
+                                                                            $dom->removeChild($element);
+                                                        
+                                                                            echo $dom->saveHTML();
+                                                                      
+                                                                        array_push($existings, $row['dataa']);
+            
+            
+            
+            
+            
+                                                                    }else
+                                                                    {
+            
+                                                                        $sqls = "SELECT user_ida, Dataa FROM catagory";
+                                                                        $results = $conn->query($sqls);
+            
+            
+                                                                        if ($results->num_rows > 0) 
+                                                                        {
+                                                                            while($rows = $results->fetch_assoc())
+                                                                            {
+                                                                                if($rows['user_ida'] == $_COOKIE['useData'])
+                                                                                {
+                                                                                    $jobjs = json_decode($rows['Dataa'], true);
+                                                                                    $element = $dom->createElement('div', $jobj['Texta']);
+            
+                                                                                    $elementSS = $dom->createElement('form', "Aktualisieren");
+                                                            
+                                                                                    $elementSAA = $dom->createElement('input');
+                        
+                                                                                    $elementS = $dom->createElement('form', "Löschen");
+                                                            
+                                                                                    $elementSA = $dom->createElement('input');
+            
+                                                                                    $elementta = $dom->createElement('div', "von ". $jobj['TimeclockFrom'] . ' bis ' .  $jobj['TimeclockTo'] );
+                                                                                
+                                                                    
+                                                                                $attr = $element->setAttributeNode(
+                                                                                        new DOMAttr('style', 'cellCurent'));
+                                                            
+                                                                    
+                                                                    
+                                                                                    
+                                                            
+                                                                                            $elementSA->setAttribute('style',  '    Color: transparent;
+                                                                                            background: transparent;
+                                                                                            text-align: center;
+                                                                                            position: relative;
+                                                                                            width: 102px;
+                                                                                            height: 29px;
+                                                                                            left: -74px;');
+            
+                                                                                            $elementta->setAttribute('style',  '     
+                                                                                            position: relative;
+                                                                                            top: -60px;;');
+            
+            
+            
+                                                                                          
+                                                            
+                                                            
+                                                                                            $elementS->setAttribute('style',  '      position: relative;
+                                                                                            left: -1067px;
+                                                                                            top: -25px;');
+                                                            
+                                                                                            $elementSA->setAttribute('type',  'submit');
+                                                            
+                                                                                            $elementSA->setAttribute('value',  ' Delete: ' . $row['id']);
+                                                                                            $elementSA->setAttribute('name',  ' Delete: ' . $row['id']);
+                                                            
+                                                            
+                                                            
+                                                                                            $elementS->setAttribute('method',  'post');
+                        
+                        
+                        
+                        
+                        
+                        
+                                                                                            $elementSAA->setAttribute('style',  '    Color: transparent;
+                                                                                            background: transparent;
+                                                                                            color: transparent;
+                                                                                            text-align: center;
+                                                                                            position: relative;
+                                                                                            width: 119px;
+                                                                                            height: 29px;
+                                                                                            left: -117px;
+                                                                                            ');
+                                                                    
+                                                            
+                                                                                            $elementSS->setAttribute('style',  '   position: relative;
+                                                                                            left: -1067px;
+                                                                                            top: -25px;
+                                                                                            ');
+            
+            
+            
+                                                                                            $elementSS->setAttribute('method', 'post');
+            
+                                                                                            $elementSAA->setAttribute('type',  'submit');
+                                                            
+                                                                                            $elementSAA->setAttribute('value',  ' Update: ' . $row['id']);
+                                                                                            $elementSAA->setAttribute('name',  ' Update: ' . $row['id']);
+                                                            
+                                                            
+                                                            
+                                                                                            $elementS->setAttribute('method',  'post');
+                                                                                    
+                                                                                        
+                                                                        
+                                                                                    $element->setAttribute('style', 'border: 1px solid ' . $jobjs['Color'] .";" 
+                                                                                
+                                                                                        .
+                                                                            
+                                                                                        "background: " . $jobjs['Color'] .";".
+                                                                                    
+                                                                                    
+                                                                                        "color: white;
+                                                                                        text-align: center;
+                                                                                        font-size: 23px;
+                                                                                        height: 54px;
+                                                                                        " );
+                                                            
+                                                            
+                                                                                    
+                                                                                        $elementS->appendChild($elementSA);
+                                                            
+                                                                                        $elementSS->appendChild($elementSAA);
+                                                            
+                                                            
+                                                                                        $element->appendChild($elementS);
+            
+            
+            
+                                                                                        
+                                                            
+                                                                                        $element->appendChild($elementSS);
+                                                                                        $element->appendChild($elementta);
+            
+            
+                                                                              
+                                                                                        $dom->appendChild($element);
+                                                                    
+                                                                                        echo $dom->saveHTML();
+            
+                                                                                  
+                                                                                        $dom->removeChild($element);
+                                                                    
+                                                                                        echo $dom->saveHTML();
+                                                                                  
+                                                                                    array_push($existings, $row['dataa']);
+                        
+                                                                                }
+                                                                            }
+                                                                        }else{
+                                                                
+                                                                        }
                                                                     }
+            
+            
+            
+            
+            
+                                                                
                                                                 }
                                                             }else{
-                                                    
+                                                           
                                                             }
+
+                                                        
+                                                          
                                                         }
-
-
-
-
-
                                                     
-                                                    }
+
+
+
+
+                                                   
                                                 }
+                                            } else {
+                                        
                                             }
-                                        } else {
+                                        
+
                                     
-                                        }
                                         $conn->close();
 
 
