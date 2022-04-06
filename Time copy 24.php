@@ -500,9 +500,7 @@
                                                                               
                                                 
                                                 
-                                                                                $elementS->setAttribute('style',  '      position: relative;
-                                                                                left: -1067px;
-                                                                                top: -25px;');
+                                                                                $elementS->setAttribute('class',  'bs');
                                                 
                                                                                 $elementSA->setAttribute('type',  'submit');
                                                 
@@ -612,12 +610,17 @@
                                                                                     {
 
                                                                                      
-
                                                                                         $element = $dom->createElement('div', $jobj['Texta']);
+            
+                                                                                        $elementSS = $dom->createElement('form');
                 
-                                                                                        $elementSS = $dom->createElement('form', "Aktualisieren");
-                                                                
+                                                                                
                                                                                         $elementSAA = $dom->createElement('input');
+                
+                
+                                                                                        
+                
+                
                             
                                                                                         $elementS = $dom->createElement('form', "Löschen");
                                                                 
@@ -626,7 +629,7 @@
                                                                                         $elementta = $dom->createElement('div', "von ". $jobj['TimeclockFrom'] . ' bis ' .  $jobj['TimeclockTo'] );
                                                                                     
                                                                         
-                                                                                        $attr = $element->setAttributeNode(
+                                                                                    $attr = $element->setAttributeNode(
                                                                                             new DOMAttr('style', 'cellCurent'));
                                                                 
                                                                         
@@ -640,6 +643,7 @@
                                                                                                 width: 102px;
                                                                                                 height: 29px;
                                                                                                 left: -74px;
+                                                                                        
                                                                                                 ');
                 
                                                                                                 $elementta->setAttribute('style',  '     
@@ -648,12 +652,11 @@
                 
                 
                 
+                
                                                                                               
                                                                 
                                                                 
-                                                                                                $elementS->setAttribute('style',  '      position: relative;
-                                                                                                left: -1067px;
-                                                                                                top: -25px;');
+                                                                                                $elementS->setAttribute('class',  'bs');
                                                                 
                                                                                                 $elementSA->setAttribute('type',  'submit');
                                                                 
@@ -677,23 +680,12 @@
                                                                                                 width: 119px;
                                                                                                 height: 29px;
                                                                                                 left: -117px;
-                                                                                             
+                                                                                              
                                                                                                 ');
-                                                                        
-                                                                
-                                                                                                $elementSS->setAttribute('style',  '       position: relative;
-                                                                                                left: 1090px;
-                                                                                                top: -52px;
-                                                                                                ');
+                                                      
                 
                 
                 
-                                                                                                $elementSS->setAttribute('method', 'post');
-                
-                                                                                                $elementSAA->setAttribute('type',  'submit');
-                                                                
-                                                                                                $elementSAA->setAttribute('value',  ' Update: ' . $row['id']);
-                                                                                                $elementSAA->setAttribute('name',  ' Update: ' . $row['id']);
                                                                 
                                                                 
                                                                 
@@ -723,9 +715,7 @@
                                                                 
                                                                 
                                                                                             $element->appendChild($elementS);
-                
-                
-                
+                                                                          
                                                                                             
                                                                 
                                                                                             $element->appendChild($elementSS);
@@ -743,7 +733,6 @@
                                                                                             echo $dom->saveHTML();
                                                                                       
                                                                                         array_push($existings, $row['dataa']);
-
 
                                                                                     }
 
