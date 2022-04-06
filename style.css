@@ -291,6 +291,120 @@ button.TopHidden
     border: transparent;
 }
 
+
+@media  screen and (max-width: 1500px) 
+{
+
+    .header {
+        border: 10px solid black;
+        color: white;
+        font-size: 11px;
+        text-align: center;
+        width: 53px;
+    }
+    .GridCOntainer {
+        position: ABSOLUTE;
+        left: 186px;
+        display: grid;
+        grid-column: 8;
+        grid-template-rows: auto;
+        padding: -34px;
+        width: 635px;
+        grid-template-areas: 'header header header header header header header';
+    }
+.goToTop
+{
+    border: 10px solid black;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    width: 132px;
+    position: relative;
+    top: -118px;
+} 
+
+.cell {
+    border: 3px solid black;
+    margin: 17px;
+    font-size: 9px;
+    background: linear-gradient(46deg, #b210d3,#4bc740 );
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    width: 18px;
+    position: relative;
+    left: 0px;
+}
+.cellCurent {
+    border: 5px solid #575757;
+    margin: 9px;
+    font-size: 9px;
+    background: linear-gradient(46deg, #440750,#235a1e );
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    width: 20px;
+    position: relative;
+    left: 5px;
+}
+input.left {
+    height: 71px;
+    right: -529px;
+    top: -78px;
+    position: relative;
+}
+.TopShowRight {
+    position: absolute;
+    right: 430px;
+    height: 60px;
+    width: 82px;
+    top: 358px;
+}
+input.right {
+    height: 71px;
+    right: -355px;
+    top: -78px;
+    position: relative;
+}
+u
+{
+    display: inline-block;
+    text-decoration: none;
+    margin: -98px;
+    border-radius: 100;
+    align-items: center;
+}
+
+html 
+{
+    scroll-behavior: smooth;
+    height: 1264px;
+}
+
+.cellHidden {
+    border: 10px solid transparent;
+    margin: -9px;
+    font-size: 43px;
+    color: transparent;
+    background: transparent;
+    border: transparent;
+    text-align: center;
+    padding: 5px 0;
+    width: 35px;
+}
+
+.clock {
+    text-align: right;
+    font-size: 69px;
+    position: relative;
+    color: white;
+    top: -311px;
+    right: 333px;
+}
+}
+
+
+
 @media  screen and (max-width: 1000px) 
 {
 

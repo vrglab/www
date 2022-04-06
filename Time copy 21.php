@@ -456,20 +456,13 @@
                                                                     {
                                                                         $element = $dom->createElement('div', $jobj['Texta']);
             
-                                                                        $elementSS = $dom->createElement('form', "Aktualisieren");
+                                                                        $elementSS = $dom->createElement('form');
 
-                                                                        $elementSSSSS = $dom->createElement('div');
-                                                
+                                                                
                                                                         $elementSAA = $dom->createElement('input');
 
 
-                                                                        $elementSAA1 = $dom->createElement('input');
-                                                                        $elementSAA2 = $dom->createElement('input');
-                                                                        $elementSAA3 = $dom->createElement('input');
-                                                                        $elementSAA4 = $dom->createElement('input');
-                                                                        $elementSAA5 = $dom->createElement('input');
-                                                                        $elementSAA6 = $dom->createElement('input');
-
+                                                                        
 
 
             
@@ -502,18 +495,6 @@
                                                                                 top: -60px;;');
 
 
-                                                                                $elementSSSSS->setAttribute('style', '
-                                                                                position: absolute;
-                                                                                left: -544px;
-                                                                                top: -284px;
-                                                                                width: 202px;
-                                                                                height: 128px;
-                                                                                ');
-
-
-                                                                                $elementSSSSS->setAttribute('class', '
-                                                                                form
-                                                                                ');
 
 
                                                                               
@@ -547,21 +528,10 @@
                                                                                 left: -117px;
                                                                               
                                                                                 ');
-                                                        
-                                                
-                                                                                $elementSS->setAttribute('style',  '      position: relative;
-                                                                                left: 1090px;
-                                                                                top: -52px;
-                                                                                ');
+                                      
 
 
 
-                                                                                $elementSS->setAttribute('method', 'post');
-
-                                                                                $elementSAA->setAttribute('type',  'submit');
-                                                
-                                                                                $elementSAA->setAttribute('value',  ' Update: ' . $row['id']);
-                                                                                $elementSAA->setAttribute('name',  ' Update: ' . $row['id']);
                                                 
                                                 
                                                 
@@ -591,8 +561,7 @@
                                                 
                                                 
                                                                             $element->appendChild($elementS);
-                                                                            $elementSS->appendChild($elementSSSSS);
-
+                                                          
                                                                             
                                                 
                                                                             $element->appendChild($elementSS);
